@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ช่องทางการโอนเงิน</title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            background: #ffffff;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 481px) {
+            .container {
+                min-height: 80vh;
+                border-radius: 20px;
+            }
+        }
+
+        .page {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 20px;
+            flex: 1;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* หน้าแรก */
+        #home-page {
+            justify-content: center;
+            text-align: center;
+        }
+
+        .logo-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: #eee;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border: 4px solid #fff;
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+        }
+
+        /* หน้าโอนเงิน */
+        .back-btn {
+            align-self: flex-start;
+            background: none;
+            border: none;
+            color: #6c5ce7;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2d3436;
+        }
+
+        .qr-box {
+            background: #fff;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            margin-bottom: 25px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .qr-box img {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+        }
+
+        .account-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            width: 100%;
+            border: 1px solid #e9ecef;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .account-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bank-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: #2d3436;
+        }
+
+        .acc-number {
+            font-size: 16px;
+            font-weight: 500;
+            color: #6c5ce7;
+            letter-spacing: 0.5px;
+        }
+
+        .copy-btn {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            font-size: 13px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #5b4cc4;
+        }
+
+        /* โน๊ตสลิป */
+        .note-box {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .note-box textarea {
+            width: 100%;
+            height: 80px;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ced4da;
+            resize: none;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .note-box textarea:focus {
+            border-color: #6c5ce7;
+        }
+
+        .save-note-btn {
+            background: #00b894;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 8px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .save-note-btn:hover {
+            background: #00a383;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: none;
+            animation: fadeInOut 1.5s ease;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            20% { opacity: 1; transform: translateY(0); }
+            80% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(20px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- หน้าแรก -->
+        <div id="home-page" class="page active">
+            <div class="logo-container">
+                <!-- ใส่ลิงก์รูปโลโก้ร้านของคุณตรง src -->
+                <img src="https://via.placeholder.com/150" alt="Logo">
+            </div>
+            <button class="btn" onclick="navigateTo('payment-page')">ช่องทางการโอนเงิน</button>
+        </div>
+
+        <!-- หน้าช่องทางการโอนเงิน -->
+        <div id="payment-page" class="page">
+            <button class="back-btn" onclick="navigateTo('home-page')">← กลับหน้าหลัก</button>
+            
+            <div class="section-title">สแกนคิวอาร์โค้ดพร้อมเพย์</div>
+            <div class="qr-box">
+                <!-- ใส่ลิงก์รูป QR Code ของคุณตรง src -->
+                <img src="https://via.placeholder.com/180" alt="QR Code">
+            </div>
+
+            <div class="section-title" style="align-self: flex-start;">บัญชีธนาคาร / วอลเล็ท</div>
+
+            <!-- บัญชีธนาคาร -->
+            <div class="account-card">
+                <span class="bank-name">🏦 กสิกรไทย (KBANK)</span>
+                <div class="account-info">
+                    <span class="acc-number" id="acc1">123-4-56789-0</span>
+                    <button class="copy-btn" onclick="copyText('acc1')">คัดลอก</button>
+                </div>
+            </div>
+
+            <!-- บัญชี TrueMoney Wallet -->
+            <div class="account-card">
+                <span class="bank-name">📱 TrueMoney Wallet</span>
+                <div class="account-info">
+                    <span class="acc-number" id="acc2">081-234-5678</span>
+                    <button class="copy-btn" onclick="copyText('acc2')">คัดลอก</button>
+                </div>
+            </div>
+
+            <!-- กล่องข้อความโน้ตสลิป -->
+            <div class="note-box">
+                <div class="section-title" style="font-size: 15px; margin-bottom: 5px;">โน๊ต / แจ้งรายละเอียด (ถ้ามี)</div>
+                <textarea id="transferNote" placeholder="ระบุชื่อผู้โอน, เลขที่คำสั่งซื้อ หรือข้อความถึงร้าน..."></textarea>
+                <button class="save-note-btn" onclick="saveNote()">บันทึกข้อความ</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">คัดลอกสำเร็จ!</div>
+
+    <script>
+        // ฟังก์ชันสลับหน้าเว็บ
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // ฟังก์ชันคัดลอกข้อความ
+        function copyText(elementId) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showToast();
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        // แจ้งเตือนเมื่อคัดลอก
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 1500);
+        }
+
+        // ฟังก์ชันบันทึกโน้ต
+        function saveNote() {
+            const note = document.getElementById('transferNote').value;
+            if(note.trim() === "") {
+                alert("กรุณากรอกข้อความก่อนบันทึก");
+                return;
+            }
+            alert("บันทึกข้อความเรียบร้อย!");
+        }
+    </script>
+</body>
+</html>
