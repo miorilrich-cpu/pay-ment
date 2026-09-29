@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Payment.exe</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+--bg:#fff9fc;
+--grid:#f8dce8;
+--window:#ffffff;
+--title:#ffe1ee;
+--border:#f3bfd4;
+--text:#8d6d7d;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Mitr',sans-serif;
+
+background:var(--bg);
+
+background-image:
+linear-gradient(var(--grid) 1px, transparent 1px),
+linear-gradient(90deg,var(--grid) 1px, transparent 1px);
+
+background-size:24px 24px;
+
+padding:25px;
+}
+
+.container{
+max-width:430px;
+margin:auto;
+}
+
+/* HOME */
+
+.home-link{
+display:inline-block;
+
+margin-bottom:18px;
+
+text-decoration:none;
+
+color:#c68fa6;
+
+font-size:14px;
+
+font-weight:500;
+}
+
+.home-link:hover{
+opacity:.7;
+}
+
+/* WINDOW */
+
+.window{
+background:white;
+
+border:2px solid var(--border);
+
+border-radius:20px;
+
+overflow:hidden;
+
+box-shadow:
+0 10px 20px rgba(255,192,203,.10);
+
+margin-bottom:18px;
+}
+
+.titlebar{
+height:42px;
+
+background:var(--title);
+
+display:flex;
+align-items:center;
+
+padding:0 15px;
+
+font-family:'Press Start 2P';
+font-size:9px;
+
+color:#b07f93;
+}
+
+/* QR */
+
+.qr-box{
+padding:25px;
+text-align:center;
+}
+
+.qr{
+width:230px;
+height:230px;
+
+margin:auto;
+
+border-radius:15px;
+
+overflow:hidden;
+
+border:2px solid var(--border);
+
+background:white;
+}
+
+.qr img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.qr-text{
+margin-top:15px;
+color:var(--text);
+line-height:1.8;
+}
+
+/* COPY ROW */
+
+.info-box{
+padding:18px;
+}
+
+.copy-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+}
+
+.number{
+font-size:18px;
+font-weight:600;
+color:#a67588;
+word-break:break-all;
+}
+
+.copy-btn{
+background:none;
+border:none;
+
+cursor:pointer;
+
+font-size:14px;
+
+font-weight:600;
+
+color:#d18fa7;
+
+transition:.2s;
+}
+
+.copy-btn:hover{
+opacity:.7;
+}
+
+/* FOOTER */
+
+.footer{
+margin-top:10px;
+
+text-align:center;
+
+color:#d19aae;
+
+font-size:22px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<a href="index.html" class="home-link">
+◀ Home
+</a>
+
+<!-- QR -->
+
+<div class="window">
+
+<div class="titlebar">
+Payment.exe
+</div>
+
+<div class="qr-box">
+
+<div class="qr">
+
+<!-- QR CODE -->
+
+<img src="images/qrcode.png" alt="QR Code">
+
+</div>
+
+<div class="qr-text">
+
+🌸 สแกนเพื่อชำระเงิน
+
+<br>
+
+✦ โอนชื่อบัญชี "มิโอริ" เท่านั้น ✦
+
+</div>
+
+</div>
+
+</div>
+
+<!-- BANK -->
+
+<div class="window">
+
+<div class="titlebar">
+Bank.exe
+</div>
+
+<div class="info-box">
+
+<div class="copy-row">
+
+<div class="number" id="bank">
+123-4-56789-0
+</div>
+
+<button
+class="copy-btn"
+onclick="copyText('bank')">
+Copy
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- WALLET -->
+
+<div class="window">
+
+<div class="titlebar">
+Wallet.exe
+</div>
+
+<div class="info-box">
+
+<div class="copy-row">
+
+<div class="number" id="wallet">
+080-000-0000
+</div>
+
+<button
+class="copy-btn"
+onclick="copyText('wallet')">
+Copy
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- NOTE -->
+
+<div class="window">
+
+<div class="titlebar">
+Note.exe
+</div>
+
+<div class="info-box">
+
+<div class="copy-row">
+
+<div class="number" id="note">
+MioriShop
+</div>
+
+<button
+class="copy-btn"
+onclick="copyText('note')">
+Copy
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+♡ Thank You ♡
+</div>
+
+</div>
+
+<script>
+
+function copyText(id){
+
+const text =
+document.getElementById(id).innerText;
+
+navigator.clipboard.writeText(text);
+
+alert("คัดลอกแล้ว 💕");
+
+}
+
+</script>
+
+</body>
+</html>
